@@ -29,7 +29,10 @@ $wgResourceModules['skins.tyrian-mediawiki'] = array(
     $skinDir . '/assets/tyrian.min.css' => array('media' => 'screen'),
     $skinDir . '/assets/tyrian-wiki.css' => array('media' => 'screen'),
   ),
-  'scripts' => array($skinDir . '/assets/bootstrap.js'),
+  'scripts' => array(
+    $skinDir . '/assets/bootstrap.js',
+    $skinDir . '/assets/tyrian-wiki.js'
+  ),
   'dependencies' => array('jquery'),
   'remoteBasePath' => &$GLOBALS['wgStylePath'],
   'localBasePath'  => &$GLOBALS['wgStyleDirectory'],

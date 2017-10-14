@@ -82,6 +82,16 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
       <div class="site-title">
         <div class="container">
           <div class="row">
+
+            <div class="wiki-title">
+              <h1 class="header-menu-toggle">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" onclick="openSideNav()">
+                  <span class="icon-bar">&#9776;</span>
+                </a>
+              </h1>
+              <h1 class="header-logo"><a href="<?php echo $mainPageUrl; ?>"><?php echo $wgSitename; ?></a></h1>
+            </div>
+
             <div class="site-title-buttons">
               <div class="btn-group">
                 <div>
@@ -98,16 +108,15 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                 </div>
               </div>
             </div>
-            <div class="wiki-title">
-              <h1><a href="<?php echo $mainPageUrl; ?>"><?php echo $wgSitename; ?></a></h1>
-            </div>
+
           </div>
         </div>
       </div>
 
-      <nav class="navbar navbar-grey navbar-sticky" id="wiki-actions" role="navigation">
+      <nav class="navbar tyrian-navbar navbar-sticky" id="wiki-actions" role="navigation">
         <div class="container">
-          <div class="row">
+      	  <div class="row">
+
             <ul class="nav navbar-nav">
               <li><a href="<?php echo $mainPageUrl; ?>">Home</a></li>
               <li class="dropdown">
@@ -126,9 +135,28 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
             <div>
               <?php $this->userspace($wgUser); ?>
             </div>
+
           </div>
         </div>
-      </nav>  
+      </nav>
+
+      <nav class="sidenav" id="sidenav">
+        <div class="container">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
+          <a href="<?php echo $mainPageUrl; ?>">Home</a>
+          <?php if($wgUser->isLoggedIn()) {
+          ?>
+            <a href="#"><i class="fa fa-cog"></i> Page Info <span class="caret"></span></a>
+            <a href="#">Page Actions <span class="caret"></span></a>
+            <a href="#"><?php echo $wgUser->getName(); ?> <span class="caret"></span></a>
+          <?php
+              } else {
+                echo Linker::linkKnown( SpecialPage::getTitleFor('UserLogin'), wfMsg('Login'));
+              }
+          ?>
+        </div>
+      </nav>
+
     </header>
     <?php
   }

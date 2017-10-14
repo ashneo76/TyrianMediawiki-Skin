@@ -27,6 +27,7 @@ body .ololo-wiki #wiki-body {
 
 .wiki-title {
     padding-left: 15px;
+    display: inline-block;
 }
 
 .ololo-wiki .site-title-buttons {
@@ -126,3 +127,46 @@ code, kbd, pre, samp {
 textarea {
     width: 100%;
 }
+
+/* Custom modifications */
+.header-logo {
+    display: inline-block;
+}
+
+.header-menu-toggle {
+    color: #6f6f6f;
+    display: inline-block;
+}
+
+.sidenav {
+    display: inline-block;
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    background-color: #54487a;
+    overflow-x: hidden;
+    transition: 0.2s;
+    padding-top: 0px;
+}
+
+.sidenav a {
+    color: white;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    transition: 0.2s;
+}
+
+.sidenav a:hover {
+    color: #e8a8e8;
+}
+
+@media all and (min-width: 768px) {
+    .header-menu-toggle { display: none; }
+    .sidenav { display: none; }
+}
+
