@@ -141,14 +141,36 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
       </nav>
 
       <nav class="sidenav" id="sidenav">
-        <div class="container">
+        <li class="container">
           <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
           <a href="<?php echo $mainPageUrl; ?>">Home</a>
+            <div class="sidebar-header">
+                <h3>Collapsible Sidebar</h3>
+            </div>
           <?php if($wgUser->isLoggedIn()) {
           ?>
-            <a href="#"><i class="fa fa-cog"></i> Page Info <span class="caret"></span></a>
-            <a href="#">Page Actions <span class="caret"></span></a>
-            <a href="#"><?php echo $wgUser->getName(); ?> <span class="caret"></span></a>
+            <nav id="sidebar">
+                <!-- Sidebar Header -->
+
+                <!-- Sidebar Links -->
+                <ul class="list-unstyled components">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><!-- Link with dropdown items -->
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                        </ul>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+
+            <li><a href="#"><i class="fa fa-cog"></i> Page Info <span class="caret"></span></a></li>
+            <li></li><a href="#">Page Actions <span class="caret"></span></a></li>
+            <li><a href="#"><?php echo $wgUser->getName(); ?> <span class="caret"></span></a></li>
           <?php
               } else {
                 echo Linker::linkKnown( SpecialPage::getTitleFor('UserLogin'), wfMsg('Login'));
