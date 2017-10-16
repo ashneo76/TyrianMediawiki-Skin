@@ -76,7 +76,6 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
   private function header($wgUser) { 
     global $wgSitename;
     $mainPageUrl = $this->data['nav_urls']['mainpage']['href'];
-
     ?>
     <header class="wiki-header noprint">
       <div class="site-title">
@@ -133,7 +132,35 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
             </ul>
 
             <div>
-              <?php $this->userspace($wgUser); ?>
+              <?php
+              if ($wgUser->isLoggedIn()) {
+                  $personal = $this->data['personal_urls'];
+
+                  $name = $wgUser->getName();
+                  $user_nav = $this->get_array_links($personal, $user_icon . $name, 'user');
+                  ?>
+                  <ul class="nav navbar-nav navbar-right">
+                      <?php echo $user_nav; ?>
+                  </ul>
+                  <?php
+
+                  if (count( $this->data['content_actions']) > 0) {
+                      $content_nav =
+                          $this->get_array_links($this->data['content_actions'], 'Page Actions', 'page');
+                      ?>
+                      <ul class="nav navbar-nav navbar-right content-actions"><?php echo $content_nav; ?></ul>
+                      <?php
+                  }
+              } else {
+                  ?>
+                  <ul class="nav navbar-nav navbar-right">
+                      <li>
+                          <?php echo Linker::linkKnown( SpecialPage::getTitleFor('Userlogin'), wfMsg('login')); ?>
+                      </li>
+                  </ul>
+                  <?php
+              }
+              ?>
             </div>
 
           </div>
@@ -165,7 +192,8 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                 <ul class="collapse list-unstyled" id="pageActions">
                     <?php
                     if (count($this->data['content_actions']) > 0) {
-                        $content_nav = $this->get_array_links($this->data['content_actions'], 'Page Actions', 'page');
+                        $menuItemsList = $this->data['content_actions'];
+                        $content_nav = $this->get_array_links($menuItemsList, 'Page Actions', 'page');
                         echo $content_nav;
                     }
                     ?>
@@ -177,9 +205,9 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                 </a>
                 <ul class="collapse list-unstyled" id="userSideMenu">
                     <?php
-                    $personal = $this->data['personal_urls'];
-                    $name = $wgUser->getName();
-                    $user_nav = $this->get_array_links($personal, $name, 'user');
+                    $menuItemsList = $this->data['personal_urls'];
+                    $menuTitle = $wgUser->getName();
+                    $user_nav = $this->get_array_links($menuItemsList, $menuTitle, 'user');
                     echo $user_nav;
                     ?>
                 </ul>
@@ -194,36 +222,6 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
 
     </header>
     <?php
-  }
-
-  private function userspace($wgUser) {
-    if ($wgUser->isLoggedIn()) {
-      $personal = $this->data['personal_urls'];
-
-      $name = $wgUser->getName();
-      $user_nav = $this->get_array_links($personal, $user_icon . $name, 'user');
-      ?>
-      <ul class="nav navbar-nav navbar-right">
-        <?php echo $user_nav; ?>
-      </ul>
-      <?php
-    
-      if (count( $this->data['content_actions']) > 0) {
-        $content_nav = 
-          $this->get_array_links($this->data['content_actions'], 'Page Actions', 'page');
-        ?>
-        <ul class="nav navbar-nav navbar-right content-actions"><?php echo $content_nav; ?></ul>
-        <?php
-      }
-    } else { 
-      ?>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <?php echo Linker::linkKnown( SpecialPage::getTitleFor('Userlogin'), wfMsg('login')); ?>
-        </li>
-      </ul>
-      <?php
-    }
   }
 
   private function body() {
