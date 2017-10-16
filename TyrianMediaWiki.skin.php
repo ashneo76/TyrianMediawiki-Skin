@@ -7,8 +7,9 @@
 if (!defined('MEDIAWIKI')) {
   die(-1);
 }
+?>
 
-
+<?php
 /**
  * Inherit main code from SkinTemplate, set the CSS and template filter.
  * @package MediaWiki
@@ -36,7 +37,9 @@ class SkinTyrianMediaWiki extends SkinTemplate {
     $out->addModuleStyles('skins.tyrian-mediawiki');
   }
 }
+?>
 
+<?php
 class TyrianMediaWikiTemplate extends BaseTemplate {
   public $skin;
 
@@ -112,6 +115,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
         </div>
       </div>
 
+      <!-- main menu/desktop menu -->
       <nav class="navbar tyrian-navbar navbar-sticky" id="wiki-actions" role="navigation">
         <div class="container">
       	  <div class="row">
@@ -167,6 +171,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
         </div>
       </nav>
 
+      <!-- side navigation menu for mobile -->
       <nav class="sidenav" id="sidenav">
         <ul class="list-unstyled components">
           <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
@@ -322,7 +327,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
   }
 
   /**
-   * Render one or more navigations elements by name, automatically reveresed
+   * Render one or more navigation elements by name, automatically reversed
    * when UI is in RTL mode
    */
   private function nav($nav) {
@@ -362,7 +367,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
   }//end nav
 
   /**
-   * Render one or more navigations elements by name, automatically reveresed
+   * Render one or more navigation elements by name, automatically reversed
    * when UI is in RTL mode
    */
   private function nav_select($nav) {
@@ -509,7 +514,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
     }
   }
 
-  public static function link() { }
+  function link() { }
 
   function toIconizedText($text, $icon) {
       return '<i class="fa fa-' . $icon . '"></i> ' . $text;
