@@ -169,6 +169,10 @@ textarea {
     font-size: 12px;
 }
 
+.sidenav-menu-dropdown > li > a {
+    padding: 2px 2px 2px 48px;
+}
+
 @media all and (min-width: 768px) {
     .header-menu-toggle { display: none; }
     .sidenav { display: none; }
