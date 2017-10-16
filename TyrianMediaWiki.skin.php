@@ -150,30 +150,30 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                 <!-- Sidebar Links -->
                 <ul class="list-unstyled components">
                     <li>
-                        <a href="#" data-toggle="collapse" aria-expanded="false">
+                        <a href="#pageInfo" data-toggle="collapse" aria-expanded="false">
                             <i class="fa fa-cog"></i> Page Info <span class="caret"></span>
                         </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <ul class="collapse list-unstyled" id="pageInfo">
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#" data-toggle="collapse" aria-expanded="false">
+                        <a href="#pageActions" data-toggle="collapse" aria-expanded="false">
                             Page Actions <span class="caret"></span>
                         </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <ul class="collapse list-unstyled" id="pageActions">
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#userMenu">
                             <?php echo $wgUser->getName(); ?> <span class="caret"></span>
                         </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <ul class="collapse list-unstyled" id="userMenu">
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
