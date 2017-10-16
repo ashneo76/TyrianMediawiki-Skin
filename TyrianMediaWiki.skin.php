@@ -165,8 +165,9 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                 <ul class="collapse list-unstyled" id="pageActions">
                     <?php
                     if (count( $this->data['content_actions']) > 0) {
-                    $content_nav = $this->get_array_links($this->data['content_actions'], 'Page Actions', 'page');
-                    echo $content_nav;
+                        $content_nav = $this->get_array_links($this->data['content_actions'], 'Page Actions', 'page');
+                        echo $content_nav;
+                    }
                     ?>
                 </ul>
             </li>
