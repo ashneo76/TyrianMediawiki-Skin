@@ -144,33 +144,43 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
         <li class="container">
           <a href="javascript:void(0)" class="closebtn" onclick="closeSideNav()">&times;</a>
           <a href="<?php echo $mainPageUrl; ?>">Home</a>
-            <div class="sidebar-header">
-                <h3>Collapsible Sidebar</h3>
-            </div>
           <?php if($wgUser->isLoggedIn()) {
           ?>
             <nav id="sidebar">
-                <!-- Sidebar Header -->
-
                 <!-- Sidebar Links -->
                 <ul class="list-unstyled components">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><!-- Link with dropdown items -->
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                    <li>
+                        <a href="#" data-toggle="collapse" aria-expanded="false">
+                            <i class="fa fa-cog"></i> Page Info <span class="caret"></span>
+                        </a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
                         </ul>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Contact</a></li>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="collapse" aria-expanded="false">
+                            Page Actions <span class="caret"></span>
+                        </a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <?php echo $wgUser->getName(); ?> <span class="caret"></span>
+                        </a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
-
-            <li><a href="#"><i class="fa fa-cog"></i> Page Info <span class="caret"></span></a></li>
-            <li></li><a href="#">Page Actions <span class="caret"></span></a></li>
-            <li><a href="#"><?php echo $wgUser->getName(); ?> <span class="caret"></span></a></li>
           <?php
               } else {
                 echo Linker::linkKnown( SpecialPage::getTitleFor('UserLogin'), wfMsg('Login'));
