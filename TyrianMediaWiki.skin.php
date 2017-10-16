@@ -163,9 +163,12 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                     Page Actions <span class="caret"></span>
                 </a>
                 <ul class="collapse list-unstyled" id="pageActions">
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
+                    <?php
+                    $personal = $this->data['personal_urls'];
+                    $name = $wgUser->getName();
+                    $user_nav = $this->get_array_links($personal, $name, 'user');
+                    echo $user_nav;
+                    ?>
                 </ul>
             </li>
             <li>
