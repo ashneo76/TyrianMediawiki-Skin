@@ -151,9 +151,11 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                     <i class="fa fa-cog"></i> Page Info <span class="caret"></span>
                 </a>
                 <ul class="collapse list-unstyled" id="pageInfo">
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
+                    <?php
+                    foreach ( $this->getToolbox() as $key => $tbitem) {
+                        echo $this->makeListItem( $key, $tbitem );
+                    }
+                    ?>
                 </ul>
             </li>
             <li>
