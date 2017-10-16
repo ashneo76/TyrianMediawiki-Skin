@@ -170,10 +170,10 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                         </ul>
                     </li>
                     <li>
-                        <a href="#userMenu">
+                        <a href="#userSideMenu">
                             <?php echo $wgUser->getName(); ?> <span class="caret"></span>
                         </a>
-                        <ul class="collapse list-unstyled" id="userMenu">
+                        <ul class="collapse list-unstyled" id="userSideMenu">
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
                             <li><a href="#">Page</a></li>
