@@ -485,7 +485,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
     return $this->nav($nav);
   }
 
-  function getPageRawText($title) {
+  private function getPageRawText($title) {
     global $wgParser, $wgUser;
     $pageTitle = Title::newFromText($title);
     if (!$pageTitle->exists()) {
@@ -500,7 +500,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
     }
   }
 
-  function includePage($title) {
+  private function includePage($title) {
     global $wgParser, $wgUser;
     $pageTitle = Title::newFromText($title);
     if (!$pageTitle->exists()) {
@@ -514,13 +514,13 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
     }
   }
 
-  function link() { }
+  private function link() { }
 
-  function toIconizedText($text, $icon) {
+  private function toIconizedText($text, $icon) {
       return '<i class="fa fa-' . $icon . '"></i> ' . $text;
   }
 
-  function getStandardizedLink($linkName, $linkInfoArray) {
+  private function getStandardizedLink($linkName, $linkInfoArray) {
       $link = array(
           'id' => Sanitizer::escapeId($linkName),
           'attributes' => $linkInfoArray['attributes'],
@@ -532,7 +532,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
       return $link;
   }
 
-  function getIconForMenuItem($menuName, $menuItemName) {
+  private function getIconForMenuItem($menuName, $menuItemName) {
       if ('page' == $menuName) {
           switch ($menuItemName) {
               case 'Page':
