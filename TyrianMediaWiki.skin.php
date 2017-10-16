@@ -150,7 +150,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                 <a href="#pageInfo" data-toggle="collapse" aria-expanded="false">
                     <i class="fa fa-cog"></i> Page Info <span class="caret"></span>
                 </a>
-                <ul class="collapse list-unstyled" id="pageInfo">
+                <ul class="collapse list-unstyled sidenav-menu-dropdown" id="pageInfo">
                     <?php
                     foreach ( $this->getToolbox() as $key => $tbitem) {
                         echo $this->makeListItem( $key, $tbitem );
