@@ -164,7 +164,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                 </a>
                 <ul class="collapse list-unstyled" id="pageActions">
                     <?php
-                    if (count( $this->data['content_actions']) > 0) {
+                    if (count($this->data['content_actions']) > 0) {
                         $content_nav = $this->get_array_links($this->data['content_actions'], 'Page Actions', 'page');
                         echo $content_nav;
                     }
@@ -469,82 +469,18 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
     return $nav;  
   }
 
-  private function get_array_links($array, $title, $which) {
+  private function get_array_links($menuItemsList, $menuTitle, $menuName) {
     $nav = array();
-    $nav[] = array('title' => $title);
-    foreach ($array as $key => $item) {
-      $link = array(
-        'id' => Sanitizer::escapeId($key),
-        'attributes' => $item['attributes'],
-        'link' => htmlspecialchars($item['href'] ),
-        'key' => $item['key'],
-        'class' => htmlspecialchars($item['class'] ),
-        'title' => htmlspecialchars($item['text'] ),
-      );
-
-      if ('page' == $which) {
-        switch ($link['title']) {
-          case 'Page': 
-            $icon = 'file';
-            break;
-          case 'Discussion': 
-            $icon = 'comment'; 
-            break;
-          case 'Edit': 
-            $icon = 'pencil';
-            break;
-          case 'History': 
-            $icon = 'clock-o'; 
-            break;
-          case 'Delete': 
-            $icon = 'remove'; 
-            break;
-          case 'Move': 
-            $icon = 'arrows'; 
-            break;
-          case 'Protect': 
-            $icon = 'lock'; 
-            break;
-          case 'Watch': 
-            $icon = 'eye'; 
-            break;
-          case 'Unwatch': 
-            $icon = 'eye-slash'; 
-            break;
-        }
-
-        $link['title'] = '<i class="fa fa-' . $icon . '"></i> ' . $link['title'];
-      } elseif ('user' == $which) {
-        switch ($link['title']) {
-          case 'Talk': 
-            $icon = 'comment'; 
-            break;
-          case 'Preferences': 
-            $icon = 'cog'; 
-            break;
-          case 'Watchlist': 
-            $icon = 'list'; 
-            break;
-          case 'Contributions': 
-            $icon = 'list-alt'; 
-            break;
-          case 'Log out': 
-            $icon = 'power-off'; 
-            break;
-          default: 
-            $icon = 'user'; 
-            break;
-        }
-
-        $link['title'] = '<i class="fa fa-' . $icon . '"></i> ' . $link['title'];
-      }
-
+    $nav[] = array('title' => $menuTitle);
+    foreach ($menuItemsList as $key => $item) {
+      $link = $this->getStandardizedLink($key, $item);
+      $icon = $this->getIconForMenuItem($menuName, $link['title']);
+      $link['title'] = $this->toIconizedText($link['title'], $icon);
       $nav[0]['sublinks'][] = $link;
     }
 
     return $this->nav($nav);
   }
-
 
   function getPageRawText($title) {
     global $wgParser, $wgUser;
@@ -576,4 +512,78 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
   }
 
   public static function link() { }
+
+  function toIconizedText($text, $icon) {
+      return '<i class="fa fa-' . $icon . '"></i> ' . $text;
+  }
+
+  function getStandardizedLink($linkName, $linkInfoArray) {
+      $link = array(
+          'id' => Sanitizer::escapeId($linkName),
+          'attributes' => $linkInfoArray['attributes'],
+          'link' => htmlspecialchars($linkInfoArray['href'] ),
+          'key' => $linkInfoArray['key'],
+          'class' => htmlspecialchars($linkInfoArray['class'] ),
+          'title' => htmlspecialchars($linkInfoArray['text'] ),
+      );
+      return $link;
+  }
+
+  function getIconForMenuItem($menuName, $menuItemName) {
+      if ('page' == $menuName) {
+          switch ($menuItemName) {
+              case 'Page':
+                  $icon = 'file';
+                  break;
+              case 'Discussion':
+                  $icon = 'comment';
+                  break;
+              case 'Edit':
+                  $icon = 'pencil';
+                  break;
+              case 'History':
+                  $icon = 'clock-o';
+                  break;
+              case 'Delete':
+                  $icon = 'remove';
+                  break;
+              case 'Move':
+                  $icon = 'arrows';
+                  break;
+              case 'Protect':
+                  $icon = 'lock';
+                  break;
+              case 'Watch':
+                  $icon = 'eye';
+                  break;
+              case 'Unwatch':
+                  $icon = 'eye-slash';
+                  break;
+          }
+      } elseif ('user' == $menuName) {
+          switch ($menuItemName) {
+              case 'Talk':
+                  $icon = 'comment';
+                  break;
+              case 'Preferences':
+                  $icon = 'cog';
+                  break;
+              case 'Watchlist':
+                  $icon = 'list';
+                  break;
+              case 'Contributions':
+                  $icon = 'list-alt';
+                  break;
+              case 'Log out':
+                  $icon = 'power-off';
+                  break;
+              default:
+                  $icon = 'user';
+                  break;
+          }
+      }
+
+      return $icon;
+  }
 }
+?>
