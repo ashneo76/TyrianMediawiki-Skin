@@ -164,10 +164,9 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                 </a>
                 <ul class="collapse list-unstyled" id="pageActions">
                     <?php
-                    $personal = $this->data['personal_urls'];
-                    $name = $wgUser->getName();
-                    $user_nav = $this->get_array_links($personal, $name, 'user');
-                    echo $user_nav;
+                    if (count( $this->data['content_actions']) > 0) {
+                    $content_nav = $this->get_array_links($this->data['content_actions'], 'Page Actions', 'page');
+                    echo $content_nav;
                     ?>
                 </ul>
             </li>
@@ -176,9 +175,12 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                     <?php echo $wgUser->getName(); ?> <span class="caret"></span>
                 </a>
                 <ul class="collapse list-unstyled" id="userSideMenu">
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
-                    <li><a href="#">Page</a></li>
+                    <?php
+                    $personal = $this->data['personal_urls'];
+                    $name = $wgUser->getName();
+                    $user_nav = $this->get_array_links($personal, $name, 'user');
+                    echo $user_nav;
+                    ?>
                 </ul>
             </li>
           <?php
