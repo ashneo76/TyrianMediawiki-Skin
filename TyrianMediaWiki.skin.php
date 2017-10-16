@@ -194,10 +194,16 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                             </a>
                             <ul class="collapse list-unstyled" id="pageActions">
                                 <?php
-                                if (count($this->data['content_actions']) > 0) {
-                                    $menuItemsList = $this->data['content_actions'];
-                                    $content_nav = $this->get_array_links($menuItemsList, 'Page Actions', 'page');
-                                    echo $content_nav;
+                                $menuItemsList = $this->data['content_actions'];
+                                if (count($menuItemsList) > 0) {
+                                    foreach ($menuItemsList as $linkName => $linkInfoArray) {
+                                        $standardizedLink = $this->toStandardizedLink($linkName, $linkInfoArray);
+                                        $linkText = $standardizedLink['title'];
+                                        $linkIcon = $this->getIconForMenuItem('page', $linkText);
+                                        echo '<li>' . $this->toIconizedText($linkText, $linkIcon) . '</li>';
+                                    }
+                                    // $content_nav = $this->get_array_links($menuItemsList, 'Page Actions', 'page');
+                                    // echo $content_nav;
                                 }
                                 ?>
                             </ul>
@@ -209,9 +215,17 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                             <ul class="collapse list-unstyled" id="userSideMenu">
                                 <?php
                                 $menuItemsList = $this->data['personal_urls'];
-                                $menuTitle = $wgUser->getName();
-                                $user_nav = $this->get_array_links($menuItemsList, $menuTitle, 'user');
-                                echo $user_nav;
+                                if (count($menuItemsList) > 0) {
+                                    foreach ($menuItemsList as $linkName => $linkInfoArray) {
+                                        $standardizedLink = $this->toStandardizedLink($linkName, $linkInfoArray);
+                                        $linkText = $standardizedLink['title'];
+                                        $linkIcon = $this->getIconForMenuItem('user', $linkText);
+                                        echo '<li>' . $this ->toIconizedText($linkText, $linkIcon) . '</li>';
+                                    }
+                                }
+                                // $menuTitle = $wgUser->getName();
+                                // $user_nav = $this->get_array_links($menuItemsList, $menuTitle, 'user');
+                                // echo $user_nav;
                                 ?>
                             </ul>
                         </li>
@@ -481,7 +495,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
         $nav = array();
         $nav[] = array('title' => $menuTitle);
         foreach ($menuItemsList as $key => $item) {
-            $link = $this->getStandardizedLink($key, $item);
+            $link = $this->toStandardizedLink($key, $item);
             $icon = $this->getIconForMenuItem($menuName, $link['title']);
             $link['title'] = $this->toIconizedText($link['title'], $icon);
             $nav[0]['sublinks'][] = $link;
@@ -523,7 +537,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
         return '<i class="fa fa-' . $icon . '"></i> ' . $text;
     }
 
-    private function getStandardizedLink($linkName, $linkInfoArray) {
+    private function toStandardizedLink($linkName, $linkInfoArray) {
         $link = array(
             'id' => Sanitizer::escapeId($linkName),
             'attributes' => $linkInfoArray['attributes'],
