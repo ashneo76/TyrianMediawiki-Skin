@@ -192,7 +192,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                             <a href="#pageActions" data-toggle="collapse" aria-expanded="false">
                                 Page Actions <span class="caret"></span>
                             </a>
-                            <ul class="collapse list-unstyled" id="pageActions">
+                            <ul class="collapse list-unstyled sidenav-menu-dropdown" id="pageActions">
                                 <?php
                                 $menuItemsList = $this->data['content_actions'];
                                 if (count($menuItemsList) > 0) {
@@ -212,7 +212,7 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                             <a href="#userSideMenu" data-toggle="collapse" aria-expanded="false">
                                 <?php echo $wgUser->getName(); ?> <span class="caret"></span>
                             </a>
-                            <ul class="collapse list-unstyled" id="userSideMenu">
+                            <ul class="collapse list-unstyled sidenav-menu-dropdown" id="userSideMenu">
                                 <?php
                                 $menuItemsList = $this->data['personal_urls'];
                                 if (count($menuItemsList) > 0) {
