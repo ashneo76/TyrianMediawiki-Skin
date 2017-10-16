@@ -166,11 +166,11 @@ textarea {
 }
 
 .sidenav-menu-dropdown {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .sidenav-menu-dropdown > li > a {
-    padding: 2px 2px 2px 48px;
+    padding: 3px 3px 3px 48px;
 }
 
 @media all and (min-width: 768px) {
