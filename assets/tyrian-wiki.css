@@ -150,19 +150,27 @@ textarea {
     overflow-x: hidden;
     transition: 0.2s;
     padding-top: 0px;
+    font-size: 16px;
 }
 
 .sidenav a {
     color: white;
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
     display: block;
     transition: 0.2s;
 }
 
 .sidenav a:hover {
     color: #e8a8e8;
+}
+
+.sidenav-menu-dropdown {
+    font-size: 14px;
+}
+
+.sidenav-menu-dropdown > li > a {
+    padding: 3px 3px 3px 48px;
 }
 
 @media all and (min-width: 768px) {
