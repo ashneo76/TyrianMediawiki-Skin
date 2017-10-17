@@ -200,7 +200,8 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                                         $standardizedLink = $this->toStandardizedLink($linkName, $linkInfoArray);
                                         $linkText = $standardizedLink['title'];
                                         $linkIcon = $this->getIconForMenuItem('page', $linkText);
-                                        echo '<li><a>' . $this->toIconizedText($linkText, $linkIcon) . '</a></li>';
+                                        echo '<li><a href="'. $standardizedLink['link'] . '">'
+                                            . $this->toIconizedText($linkText, $linkIcon) . '</a></li>';
                                     }
                                     // $content_nav = $this->get_array_links($menuItemsList, 'Page Actions', 'page');
                                     // echo $content_nav;
@@ -220,7 +221,8 @@ class TyrianMediaWikiTemplate extends BaseTemplate {
                                         $standardizedLink = $this->toStandardizedLink($linkName, $linkInfoArray);
                                         $linkText = $standardizedLink['title'];
                                         $linkIcon = $this->getIconForMenuItem('user', $linkText);
-                                        echo '<li><a>' . $this ->toIconizedText($linkText, $linkIcon) . '</a></li>';
+                                        echo '<li><a href="'. $standardizedLink['link'] . '">'
+                                            . $this ->toIconizedText($linkText, $linkIcon) . '</a></li>';
                                     }
                                 }
                                 // $menuTitle = $wgUser->getName();
